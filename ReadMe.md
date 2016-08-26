@@ -1,4 +1,4 @@
-<h1>Java8 study sample project
+<h1>Java8 study sample project</h1>
 
 Java8 in InteliJ IDEA
 
