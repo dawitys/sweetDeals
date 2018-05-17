@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ItemPicViewController">
+   <children>
+      <Hyperlink fx:id="lg" layoutX="495.0" layoutY="353.0" prefHeight="30.0" prefWidth="104.0" text="Back" textFill="#0e27b9">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Hyperlink>
+      <ImageView fx:id="item_pic_view" fitHeight="219.0" fitWidth="230.0" layoutX="311.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@default.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="item_name" layoutX="74.0" layoutY="118.0" prefHeight="17.0" prefWidth="184.0" text="Item Name">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <Label fx:id="seller_name" layoutX="87.0" layoutY="212.0" prefHeight="35.0" prefWidth="184.0" text="SellerName">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="220.0" prefHeight="26.0" prefWidth="51.0" text="seller  :" />
+   </children>
+</AnchorPane>

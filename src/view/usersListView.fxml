@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UsersListViewController">
+   <children>
+      <AnchorPane layoutX="6.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <TableView fx:id="user_table_view" layoutX="3.0" layoutY="52.0" prefHeight="297.0" prefWidth="423.0">
+               <columns>
+                  <TableColumn fx:id="userId" prefWidth="94.0" text="ID" />
+                  <TableColumn fx:id="userFullName" prefWidth="200.0" text="Full Name" />
+                  <TableColumn fx:id="user_bogous" prefWidth="135.0" text="Bougs Reported On" />
+               </columns>
+            </TableView>
+            <TextField fx:id="find_key" layoutX="274.0" layoutY="19.0" promptText="Search..." />
+            <Button fx:id="deleteUser_btn" layoutX="456.0" layoutY="118.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: #0021FF;" text="Delete User" textFill="WHITE">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Hyperlink fx:id="lg" layoutX="508.0" layoutY="341.0" prefHeight="29.0" prefWidth="84.0" text="back" textFill="#0e27b9">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
