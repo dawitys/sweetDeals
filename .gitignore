@@ -1,15 +1,6 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
 *#
 *.iml
 *.ipr
@@ -52,7 +43,7 @@ secrets.yml
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+/.idea
 *.iws
 *.iml
 *.ipr
