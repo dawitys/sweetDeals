@@ -17,6 +17,7 @@ public class User {
         this.id = new SimpleStringProperty(id);
         this.fullName = new SimpleStringProperty(name);
         this.bogusStatus = new SimpleStringProperty(bogus);
+        //User(id,name,bogus,null,null);
     }
 
     public User(String id, String name, String bogus,String username,String password) {

@@ -5,6 +5,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -20,7 +22,7 @@
                </columns>
             </TableView>
             <TextField fx:id="find_key" layoutX="274.0" layoutY="19.0" promptText="Search..." />
-            <Button fx:id="deleteUser_btn" layoutX="456.0" layoutY="118.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: #0021FF;" text="Delete User" textFill="WHITE">
+            <Button fx:id="deleteUser_btn" layoutX="456.0" layoutY="153.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: #0021FF;" text="Delete User" textFill="WHITE">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font>
@@ -30,6 +32,11 @@
                   <Font size="25.0" />
                </font>
             </Hyperlink>
+            <ImageView fitHeight="101.0" fitWidth="131.0" layoutX="469.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images_shop.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

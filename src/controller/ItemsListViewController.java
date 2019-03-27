@@ -70,13 +70,16 @@ public class ItemsListViewController implements Initializable {
     private Button add_item_btn;
     @FXML
     private TextField find_key;
+    
     private String sellerId;
     private String reportedSellerId;
     private String itemId;
+    private String itemName;
     ObservableList<Item> list = FXCollections.observableArrayList();
     
     public void initVariable(String sent){
         this.sellerId = sent;
+        System.out.println("To ilv initiated with seller id:"+sellerId);
     }
 
     private void setEnable(){
@@ -107,14 +110,15 @@ public class ItemsListViewController implements Initializable {
             ex.printStackTrace();
         }
         
-        item_id_col.setCellValueFactory(new PropertyValueFactory<>("itemId"));
+        item_id_col.setCellValueFactory(new PropertyValueFactory<>("id"));
         item_name_col.setCellValueFactory(new PropertyValueFactory<>("itemName"));
-        item_catagory_col.setCellValueFactory(new PropertyValueFactory<>("itemCatagory"));
-        item_price_col.setCellValueFactory(new PropertyValueFactory<>("itemPrice"));
+        item_catagory_col.setCellValueFactory(new PropertyValueFactory<>("catagory"));
+        item_price_col.setCellValueFactory(new PropertyValueFactory<>("price"));
         sold_col.setCellValueFactory(new PropertyValueFactory<>("soldStatus"));
         item_table_view.setOnMousePressed((MouseEvent event) -> {
             setEnable();
             itemId=item_table_view.getSelectionModel().getSelectedItem().getId();
+            itemName=item_table_view.getSelectionModel().getSelectedItem().getItemName();
         });
         item_table_view.setItems(list);
     }
@@ -170,7 +174,7 @@ public class ItemsListViewController implements Initializable {
                     while(rs.next()){
                         reportedSellerId=String.valueOf(rs.getInt("sellerId"));
                     }
-                    controller.initVariable(reportedSellerId);
+                    controller.initVariable(sellerId,reportedSellerId,itemId,itemName);
                     Scene adminScene = new Scene(adminParent);
                     Stage adminStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     adminStage.hide();
@@ -205,7 +209,7 @@ public class ItemsListViewController implements Initializable {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/itemPicView.fxml"));
                     Parent parent=loader.load();
                     ItemPicViewController controller = loader.<ItemPicViewController>getController();
-                    controller.initVar(itemId);
+                    controller.initVar(sellerId,itemId,itemName);
                     Scene adminScene = new Scene(parent);
                     Stage adminStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     adminStage.hide();
@@ -240,7 +244,10 @@ public class ItemsListViewController implements Initializable {
             @Override
             public void handle(Event event) {
                 try{
-                    Parent adminParent = FXMLLoader.load(getClass().getResource("/view/buyFormView.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/buyFormView.fxml"));
+                    Parent adminParent = loader.load();
+                    BuyFormViewController controller = loader.<BuyFormViewController>getController();
+                    controller.initiateVarId(itemId,sellerId);
                     Scene adminScene = new Scene(adminParent);
                     Stage adminStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     adminStage.hide();
@@ -258,6 +265,7 @@ public class ItemsListViewController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ItemsListViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("initiated with seller id:"+sellerId);
 
     }    
     

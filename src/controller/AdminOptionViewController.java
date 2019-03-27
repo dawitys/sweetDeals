@@ -7,6 +7,7 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -33,15 +34,22 @@ public class AdminOptionViewController implements Initializable {
     @FXML
     private Button itembtn;
 
+    private String adminId;
+
+    public void initsId(String ad) {
+        this.adminId = ad;
+        System.out.println("initiated with seller id:" + adminId);
+    }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        user_btn.setOnAction(new EventHandler(){
+        user_btn.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-                try{
+                try {
                     Parent adminParent = FXMLLoader.load(getClass().getResource("/view/usersListView.fxml"));
                     Scene adminScene = new Scene(adminParent);
                     Stage adminStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -49,16 +57,16 @@ public class AdminOptionViewController implements Initializable {
                     adminStage.setScene(adminScene);
                     adminStage.setTitle("Users Managment");
                     adminStage.show();
-                }catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            
+
         });
-        itembtn.setOnAction(new EventHandler(){
+        itembtn.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-                try{
+                try {
                     Parent adminParent = FXMLLoader.load(getClass().getResource("/view/itemsListView.fxml"));
                     Scene adminScene = new Scene(adminParent);
                     Stage adminStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -66,16 +74,16 @@ public class AdminOptionViewController implements Initializable {
                     adminStage.setScene(adminScene);
                     adminStage.setTitle("Items Managment");
                     adminStage.show();
-                }catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            
+
         });
-        logout_link.setOnAction(new EventHandler(){
+        logout_link.setOnAction(new EventHandler() {
             @Override
             public void handle(Event event) {
-                try{
+                try {
                     Parent adminParent = FXMLLoader.load(getClass().getResource("/view/mainView.fxml"));
                     Scene adminScene = new Scene(adminParent);
                     Stage adminStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -83,12 +91,12 @@ public class AdminOptionViewController implements Initializable {
                     adminStage.setScene(adminScene);
                     adminStage.setTitle("Main Window");
                     adminStage.show();
-                }catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            
+
         });
-    }    
-    
+    }
+
 }

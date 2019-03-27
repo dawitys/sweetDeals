@@ -51,15 +51,13 @@ public class AddFormViewController implements Initializable {
     
     public void initVariable(String sent){
         this.seller = sent;
-        System.out.println(this.seller);
+        System.out.println("seller setted in add form :"+this.seller);
     }
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        System.out.println(seller);
-        
+    public void initialize(URL url, ResourceBundle rb) {    
         final FileChooser fileChooser = new FileChooser();
         
         uplode_pic.setOnAction(new EventHandler<ActionEvent>() {
@@ -104,7 +102,8 @@ public class AddFormViewController implements Initializable {
                     e.printStackTrace();
                 }           
             } 
-        });     
+        });   
+        System.out.println("initiated with seller id:"+seller);
     }   
         public String getDir(File file){
             String dir=file.getAbsolutePath();

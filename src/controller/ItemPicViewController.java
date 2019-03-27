@@ -6,6 +6,7 @@
 package controller;
 
 import Model.DbConnection;
+
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -34,33 +35,25 @@ public class ItemPicViewController implements Initializable {
     @FXML
     private Hyperlink lg;
     @FXML
-    private ImageView item_pic_view;
+    private ImageView item_pic_view;  
     @FXML
-    private Label item_name;
-    @FXML
-    private Label seller_name;
+    private Label items_name;
     
+    private String sellerId;
     public int itemId;
+    private String itemsName;
+    public String imgUri="";
 
     /**
      * Initializes the controller class.
      */
-    public void initVar(String id){
+    public void initVar(String user,String id,String seller){
+        this.sellerId=user;
         itemId=Integer.parseInt(id);
-    }
-    @Override
-    
-    public void initialize(URL url, ResourceBundle rb) {
-        String imgUri="";
-        String itemName="";
+        itemsName=seller;
         try{
-            Statement st=DbConnection.getInstance().getConnection().createStatement(); 
-            String query1 = "SELECT itemName FROM  items WHERE  items.itemId ="+itemId+";";
-            ResultSet rs=st.executeQuery(query1);
-            while (rs.next()){
-                itemName=rs.getString("itemName");
-            }
-            String query2 = "SELECT uri FROM  itemimage WHERE  itemName ='"+itemName+"';";
+            Statement st=DbConnection.getInstance().getConnection().createStatement();
+            String query2 = "SELECT uri FROM  itemimage WHERE  itemName ='"+itemsName+"';";
             ResultSet rs2=st.executeQuery(query2);
             while (rs2.next()){
                 imgUri=rs2.getString("uri");
@@ -68,13 +61,32 @@ public class ItemPicViewController implements Initializable {
         }catch(Exception e){
             e.printStackTrace();
         }
-        item_name.setText(itemName);
+        items_name.setText(itemsName);
         System.out.println(imgUri);
+        String ur=encode(imgUri);
+        
+        if(!"".equals(imgUri)){
+            Image i=new Image(ur);
+            item_pic_view.setImage(i);
+        }else{
+            Image i=new Image("/view/default.png");
+            item_pic_view.setImage(i);
+        }
+    }
+    private static String encode(String i){
+        String out ="file:/"+i.replace("\\","/");
+        return out;
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
         lg.setOnAction(new EventHandler(){
             @Override
             public void handle(Event event) {
                 try{
-                    Parent adminParent = FXMLLoader.load(getClass().getResource("/view/itemsListView.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/itemsListView.fxml"));
+                    Parent adminParent = loader.load();
+                    ItemsListViewController controller = loader.<ItemsListViewController>getController();
+                    controller.initVariable(sellerId);
                     Scene adminScene = new Scene(adminParent);
                     Stage adminStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     adminStage.hide();

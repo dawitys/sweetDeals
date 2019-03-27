@@ -37,10 +37,19 @@ public class BuyFormViewController implements Initializable {
     private Button submit_button;
     @FXML
     private TextField adress__box;
+    
+    public String sellerId;
+    public int itemId;
 
     /**
      * Initializes the controller class.
      */
+   
+    public void initiateVarId(String i,String j){
+        this.itemId=Integer.parseInt(i);
+        this.sellerId=j;
+        System.out.println(sellerId);
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         submit_button.setOnAction(new EventHandler(){
@@ -52,7 +61,8 @@ public class BuyFormViewController implements Initializable {
                     Statement st=DbConnection.getInstance().getConnection().createStatement();
                     String query = "INSERT INTO `sweetdeals`.`transaction` (`buyer`, `buyerAdress`) VALUES ('"+buyer+"','"+buyerAdress+"');";
                     st.executeUpdate(query);
-                    
+                    String query2= "UPDATE  `sweetdeals`.`items` SET  `soldOut` =  '1' WHERE  `items`.`itemId` ="+itemId+";";
+                    st.executeUpdate(query2);
                     System.out.println("Succesful Insertion");
                     TrayNotification tray = new TrayNotification("Succesful Transaction","Item will be delivered soon", NotificationType.INFORMATION);
                     tray.showAndDismiss(Duration.millis(5000));
@@ -60,7 +70,10 @@ public class BuyFormViewController implements Initializable {
                     e.printStackTrace();
                 }
                 try{
-                    Parent adminParent = FXMLLoader.load(getClass().getResource("/view/itemsListView.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/itemsListView.fxml"));
+                    Parent adminParent=loader.load();
+                    ItemsListViewController controller = loader.<ItemsListViewController>getController();
+                    controller.initVariable(sellerId);
                     Scene adminScene = new Scene(adminParent);
                     Stage adminStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     adminStage.hide();
